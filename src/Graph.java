@@ -3,12 +3,10 @@ import java.awt.Font;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
 import org.knowm.xchart.SwingWrapper;
-import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import org.knowm.xchart.XYSeries;
@@ -17,7 +15,7 @@ import org.knowm.xchart.style.colors.ChartColor;
 import org.knowm.xchart.style.colors.XChartSeriesColors;
 import org.knowm.xchart.style.lines.SeriesLines;
 import org.knowm.xchart.style.markers.SeriesMarkers;
-
+	
 /**
  * To close the graph window press 'esc'
  * 
@@ -78,7 +76,7 @@ public class Graph extends Thread {
 		positionChart.getStyler().setLegendPosition(LegendPosition.InsideSE);
 
 		// Series
-		XYSeries posCenter = positionChart.addSeries("Velocity v Time", x, y);
+		XYSeries posCenter = positionChart.addSeries(yName + " vs. " + xName, x, y);
 		posCenter.setLineColor(XChartSeriesColors.GREEN);
 		posCenter.setMarkerColor(txtColor);
 		posCenter.setMarker(SeriesMarkers.CIRCLE);

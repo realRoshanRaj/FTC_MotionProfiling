@@ -16,15 +16,17 @@ public class Trajectory {
 	}
 
 	public static void printContent(Trajectory traj) {
-		for (Segment i : traj.segments) {
-			System.out.print("Velocity " + i.velocity);
+		printContent(traj.segments);
+	}
+
+	public static void printContent(Segment[] segs) {
+		for (Segment i : segs) {
+			System.out.print("Dt " + i.dt);
+			System.out.print(" Velocity " + i.velocity);
 			System.out.print(" Acceleration " + i.acceleration);
 			System.out.print(" Postion " + i.position);
 			System.out.println(" Heading " + i.heading);
 		}
-	}
 
-	public static void printContent(Segment[] segs) {
-		printContent(new Trajectory(segs));
 	}
 }
