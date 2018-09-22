@@ -60,7 +60,7 @@ public class Generator {
 			zero[i] = 0;
 		}
 
-		new Graph("X", "Y", zero, pos).start();
+		new Graph("Time", "Position", time, pos).start();
 		new Graph("Time", "Velocity", time, vel).start();
 
 		return trajectory;
