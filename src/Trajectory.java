@@ -18,10 +18,11 @@ public class Trajectory {
 	public static void printContent(Trajectory traj) {
 		for (Segment i : traj.segments) {
 			System.out.print("Velocity " + i.velocity);
-			System.out.println("Accel " + i.acceleration);
+			System.out.print(" Accel " + i.acceleration);
+			System.out.println(" Postion " + i.position);
 		}
 	}
-	
+
 	public static void printContent(Segment[] segs) {
 		printContent(new Trajectory(segs));
 	}

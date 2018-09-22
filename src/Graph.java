@@ -65,6 +65,8 @@ public class Graph extends Thread {
 		positionChart.getStyler().setAxisTickPadding(20);
 
 		positionChart.getStyler().setAxisTickMarkLength(15);
+		
+		positionChart.getStyler().setMarkerSize(5);
 
 		positionChart.getStyler().setPlotMargin(20);
 		positionChart.getStyler().setXAxisTickMarkSpacingHint(30);

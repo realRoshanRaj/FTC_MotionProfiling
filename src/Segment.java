@@ -1,10 +1,9 @@
 
 public class Segment {
-	double dt, x, position, velocity, acceleration;
+	double dt, position, velocity, acceleration;
 
-	public Segment(double dt, double x, double position, double velocity, double acceleration) {
+	public Segment(double dt, double position, double velocity, double acceleration) {
 		this.dt = dt;
-		this.x = x;
 		this.position = position;
 		this.velocity = velocity;
 		this.acceleration = acceleration;
