@@ -18,6 +18,10 @@ public class Trajectory {
 	public static void printContent(Trajectory traj) {
 		printContent(traj.segments);
 	}
+	
+	public void printContent() {
+		printContent(this);
+	}
 
 	public static void printContent(Segment[] segs) {
 		for (Segment i : segs) {

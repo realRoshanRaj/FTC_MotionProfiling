@@ -1,6 +1,7 @@
 public class Main {
 	public static void main(String[] args) {
-		Trajectory traj = new Generator().generateTrajectory(new Config(0.050000000000000, 50, 20), 190);
+		Trajectory traj = new Generator().generateTrajectory(new Config(0.050000000000000, 50, 10), 260);
+		traj.printContent();
 //		Timer time = new Timer(); // Instantiate Timer Object
 //
 //		time.schedule(new TimerTask() {

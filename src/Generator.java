@@ -7,7 +7,8 @@ public class Generator {
 	 */
 	public Trajectory generateTrajectory(Config config, double distance) {
 		double time = config.max_velocity / config.max_acceleration;
-		double area = time * config.max_velocity * 2;
+		double area = time * config.max_velocity;
+//		double area = time * config.max_velocity * 2;
 		if (distance <= area) {
 			return generateTriangular(config, distance);
 		} else {
@@ -56,7 +57,6 @@ public class Generator {
 		}
 
 		Trajectory trajectory = new Trajectory(traj);
-		Trajectory.printContent(trajectory);
 		double[] vel = new double[traj.length], time = new double[traj.length], pos = new double[traj.length],
 				zero = new double[traj.length];
 		for (int i = 0; i < vel.length; i++) {
@@ -80,7 +80,8 @@ public class Generator {
 		double currVel, currAccel;
 
 		double time = maxVel / maxAccel;
-		double area = time * maxVel * 2;
+//		double area = time * maxVel * 2;
+		double area = time * maxVel;
 		if (area < distance) {
 
 			totalTime = (2 * time) + (distance - area) / maxVel;
@@ -119,7 +120,6 @@ public class Generator {
 			}
 
 			Trajectory trajectory = new Trajectory(traj);
-			Trajectory.printContent(trajectory);
 			double[] vel = new double[traj.length], timeGraph = new double[traj.length], pos = new double[traj.length],
 					zero = new double[traj.length];
 			for (int i = 0; i < vel.length; i++) {
