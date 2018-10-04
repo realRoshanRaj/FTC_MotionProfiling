@@ -10,4 +10,12 @@ public class Segment {
 		this.heading = 0.0;
 	}
 
+	public double getPosition(){
+		return position;
+	}
+
+	public double getVelocity(){
+		return velocity;
+	}
+
 }
