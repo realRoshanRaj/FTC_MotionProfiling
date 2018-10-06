@@ -40,7 +40,7 @@ public class Trajectory {
 			System.out.print(" Acceleration " + i.getAcceleration());
 			System.out.print(" Postion " + i.getPosition());
 			System.out.print(" Heading " + i.getHeading());
-			System.out.println(" Power " + i.getVelocity() / Main.config.max_velocity);
+			System.out.println();
 		}
 
 	}

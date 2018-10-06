@@ -6,3 +6,4 @@ public class Main {
 		WheelTrajectory traj = PivotProfileGenerator.generateTrajectory(config, wheelbase_width, 90);
 	}
 }
+		

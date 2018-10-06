@@ -1,5 +1,11 @@
 public class PivotProfileGenerator {
-	// Positive if CW; negative CCW
+	
+	/**
+	 * @param config
+	 * @param wheelbase_width
+	 * @param angle --> Positive if CW; negative CCW
+	 * @return
+	 */
 	public static WheelTrajectory generateTrajectory(Config config, double wheelbase_width, double angle) {
 		WheelTrajectory trajectories;
 		double r = wheelbase_width / 2;
@@ -45,7 +51,7 @@ public class PivotProfileGenerator {
 	 * @param angle_degrees an input angle in degrees
 	 * @return the bounded angle
 	 */
-	public static double boundHalfDegrees(double angle_degrees) {
+	private static double boundHalfDegrees(double angle_degrees) {
 		while (angle_degrees >= 180.0)
 			angle_degrees -= 360.0;
 		while (angle_degrees < -180.0)

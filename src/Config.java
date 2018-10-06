@@ -1,6 +1,5 @@
 public class Config {
-	public double dt, max_velocity, max_acceleration;
-	public VelocityType velType;	
+	public double dt, max_velocity, max_acceleration;	
 	
 	/**
 	 * @param dt				The time delta between points (in seconds)
@@ -11,9 +10,5 @@ public class Config {
 		this.dt = dt;
 		this.max_velocity = max_velocity;
 		this.max_acceleration = max_acceleration;
-	}
-	
-	private enum VelocityType{
-		TRIANGULAR, TRAPIZOIDAL, AUTO; 
 	}
 }

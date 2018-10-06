@@ -30,6 +30,7 @@ public class Graph extends Thread {
 	double[] x2 = null, y2 = null;
 	String xName, yName;
 
+	@Override
 	public void run() {
 		try {
 			displayProfile();
@@ -103,6 +104,7 @@ public class Graph extends Thread {
 		JFrame positionJFrame = (new SwingWrapper<XYChart>(positionChart)).displayChart();
 
 		java.awt.event.ActionListener posEscListener = new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				positionJFrame.dispose();
 			}

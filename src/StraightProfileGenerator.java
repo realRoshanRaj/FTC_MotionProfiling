@@ -3,7 +3,7 @@ public class StraightProfileGenerator {
 	/**
 	 * @param config
 	 * @param distance (in inches)
-	 * @return
+	 * @return {@link WheelTrajectory}
 	 */
 	public static Trajectory generateTrajectory(Config config, double distance) {
 		double time = config.max_velocity / config.max_acceleration;
@@ -18,7 +18,7 @@ public class StraightProfileGenerator {
 	/**
 	 * @param config
 	 * @param distance (in inches)
-	 * @return
+	 * @return {@link WheelTrajectory}
 	 */
 	public static WheelTrajectory generateTrajectory(Config config, final double wheelbase_width, double distance) {
 		double time = config.max_velocity / config.max_acceleration;
@@ -41,6 +41,11 @@ public class StraightProfileGenerator {
 		return new WheelTrajectory(left, right);
 	}
 
+	/**
+	 * @param config
+	 * @param distance to travel
+	 * @return {@link Trajectory}
+	 */
 	private static Trajectory generateTriangular(Config config, double distance) {
 		Segment[] traj;
 		double maxAccel = config.max_acceleration;
@@ -81,6 +86,11 @@ public class StraightProfileGenerator {
 		return trajectory;
 	}
 
+	/**
+	 * @param config
+	 * @param distance
+	 * @return {@link Trajectory}
+	 */
 	private static Trajectory generateTrapezoidal(Config config, double distance) {
 		Segment[] traj;
 		double maxAccel = config.max_acceleration;
