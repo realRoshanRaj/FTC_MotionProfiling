@@ -15,7 +15,7 @@ import org.knowm.xchart.style.colors.ChartColor;
 import org.knowm.xchart.style.colors.XChartSeriesColors;
 import org.knowm.xchart.style.lines.SeriesLines;
 import org.knowm.xchart.style.markers.SeriesMarkers;
-	
+
 /**
  * To close the graph window press 'esc'
  * 
@@ -27,6 +27,7 @@ public class Graph extends Thread {
 	java.awt.Color pointColor = new java.awt.Color(255, 0, 0);
 	boolean isElevator, isPreview;
 	double[] x, y;
+	double[] x2 = null, y2 = null;
 	String xName, yName;
 
 	public void run() {
@@ -40,6 +41,15 @@ public class Graph extends Thread {
 	public Graph(String xName, String yName, double[] x, double[] y) {
 		this.x = x;
 		this.y = y;
+		this.xName = xName;
+		this.yName = yName;
+	}
+
+	public Graph(String xName, String yName, double[] x1, double[] y1, double[] x2, double[] y2) {
+		this.x = x1;
+		this.y = y1;
+		this.x2 = x2;
+		this.y2 = y2;
 		this.xName = xName;
 		this.yName = yName;
 	}
@@ -63,7 +73,7 @@ public class Graph extends Thread {
 		positionChart.getStyler().setAxisTickPadding(20);
 
 		positionChart.getStyler().setAxisTickMarkLength(15);
-		
+
 		positionChart.getStyler().setMarkerSize(5);
 
 		positionChart.getStyler().setPlotMargin(20);
@@ -82,7 +92,15 @@ public class Graph extends Thread {
 		posCenter.setMarker(SeriesMarkers.CIRCLE);
 		posCenter.setLineStyle(SeriesLines.SOLID);
 
-		JFrame positionJFrame = (new SwingWrapper<XYChart>(positionChart)).displayChart("profile");
+		if (x2 != null) {
+			// Series
+			XYSeries posCenter2 = positionChart.addSeries(yName + " vs. " + xName + " Right", x2, y2);
+			posCenter2.setLineColor(XChartSeriesColors.MAGENTA);
+			posCenter2.setMarkerColor(txtColor);
+			posCenter2.setMarker(SeriesMarkers.CIRCLE);
+			posCenter2.setLineStyle(SeriesLines.SOLID);
+		}
+		JFrame positionJFrame = (new SwingWrapper<XYChart>(positionChart)).displayChart();
 
 		java.awt.event.ActionListener posEscListener = new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {

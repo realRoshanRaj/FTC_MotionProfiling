@@ -1,4 +1,4 @@
-public class Generator {
+public class StraightProfileGenerator {
 
 	/**
 	 * @param config
@@ -15,7 +15,33 @@ public class Generator {
 		}
 	}
 
-	public static Trajectory generateTriangular(Config config, double distance) {
+	/**
+	 * @param config
+	 * @param distance (in inches)
+	 * @return
+	 */
+	public static WheelTrajectory generateTrajectory(Config config, final double wheelbase_width, double distance) {
+		double time = config.max_velocity / config.max_acceleration;
+		double area = time * config.max_velocity;
+		Trajectory cent, left, right;
+		if (distance <= area) {
+			cent = generateTriangular(config, distance);
+		} else {
+			cent = generateTrapezoidal(config, distance);
+		}
+
+		left = cent.copy();
+		right = cent.copy();
+
+		for (int i = 0; i < cent.length(); i++) {
+			left.segments[i].horizontal -= (wheelbase_width / 2);
+			right.segments[i].horizontal += (wheelbase_width / 2);
+		}
+
+		return new WheelTrajectory(left, right);
+	}
+
+	private static Trajectory generateTriangular(Config config, double distance) {
 		Segment[] traj;
 		double maxAccel = config.max_acceleration;
 		double maxVel = config.max_velocity;
@@ -38,14 +64,14 @@ public class Generator {
 			if (dt < totalTime / 2) {
 				double vel = currAccel * dt;
 				double newPosition = (vel + prevVel) / 2 * (config.dt) + prevPosition;
-				traj[i] = new Segment(dt, newPosition, vel, currAccel);
+				traj[i] = new Segment(dt, newPosition, 0, newPosition, vel, currAccel);
 				prevPosition = newPosition;
 				prevVel = vel;
 			} else {
 				// y = -currAccel + currMaxVel
 				double vel = -currAccel * (dt - totalTime / 2) + currMaxVel;
 				double newPosition = ((vel + prevVel) / 2 * (config.dt)) + prevPosition;
-				traj[i] = new Segment(dt, newPosition, vel, -currAccel);
+				traj[i] = new Segment(dt, newPosition, 0, newPosition, vel, -currAccel);
 				prevPosition = newPosition;
 				prevVel = vel;
 			}
@@ -55,7 +81,7 @@ public class Generator {
 		return trajectory;
 	}
 
-	public static Trajectory generateTrapezoidal(Config config, double distance) {
+	private static Trajectory generateTrapezoidal(Config config, double distance) {
 		Segment[] traj;
 		double maxAccel = config.max_acceleration;
 		double maxVel = config.max_velocity;
@@ -78,7 +104,7 @@ public class Generator {
 					currAccel = maxAccel;
 					double vel = currAccel * dt;
 					double newPosition = (vel + prevVel) / 2 * (config.dt) + prevPosition;
-					traj[i] = new Segment(dt, newPosition, vel, currAccel);
+					traj[i] = new Segment(dt, newPosition, 0, newPosition, vel, currAccel);
 					prevPosition = newPosition;
 					prevVel = vel;
 				} else if (dt < (totalTime - time)) {
@@ -86,7 +112,7 @@ public class Generator {
 					currVel = maxVel;
 					double vel = currVel;
 					double newPosition = (vel + prevVel) / 2 * (config.dt) + prevPosition;
-					traj[i] = new Segment(dt, newPosition, currVel, currAccel);
+					traj[i] = new Segment(dt, newPosition, 0, newPosition, currVel, currAccel);
 					prevPosition = newPosition;
 					prevVel = vel;
 				} else {
@@ -94,7 +120,7 @@ public class Generator {
 					currVel = maxVel;
 					double vel = -currAccel * (dt - (totalTime - time)) + currVel;
 					double newPosition = (vel + prevVel) / 2 * (config.dt) + prevPosition;
-					traj[i] = new Segment(dt, newPosition, vel, -currAccel);
+					traj[i] = new Segment(dt, newPosition, 0, newPosition, vel, -currAccel);
 					prevPosition = newPosition;
 					prevVel = vel;
 				}
