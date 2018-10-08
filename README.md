@@ -10,11 +10,11 @@ If we want the robot/vehicle to move 10 **inches** forward, then the velocity wo
 and acceleration would be **inches per second per second (inches/second^2)**.
 
 ### How do I calculate max velocity and max acceleration?
-[Click here for link to KinematicTest](https://github.com/realRoshanRaj/FTC_LinearMotionProfiling/tree/ftcapp/ftc_app-master/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Samples)
+[Click here for link to KinematicTest](https://github.com/realRoshanRaj/FTC_MotionProfiling/blob/FTC-app-master/ftc_app-master/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Samples/KinematicTest.java)
 
 #### Using that class you can find both max velocity and max acceleration. 
 
-Before you use kinematic test make sure you configured the [Hardware](https://github.com/realRoshanRaj/FTC_LinearMotionProfiling/tree/ftcapp/ftc_app-master/TeamCode/src/main/java/org/firstinspires/ftc/teamcode) file correctly.
+Before you use kinematic test make sure you configured the [Hardware](https://github.com/realRoshanRaj/FTC_MotionProfiling/blob/FTC-app-master/ftc_app-master/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Hardware.java) file correctly.
 <br> <br> Put the number of encoder ticks per one revolution of your motor as such:
 
 ```java
