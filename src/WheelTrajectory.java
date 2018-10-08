@@ -1,25 +1,46 @@
 
+/**
+ * Stores two trajectories for left and right side of the drivetrain
+ *
+ */
 public class WheelTrajectory {
 
 	private Trajectory[] trajectories = new Trajectory[2];
 
+	/**
+	 * 
+	 * @param left  trajectory
+	 * @param right trajectory
+	 */
 	public WheelTrajectory(final Trajectory left, final Trajectory right) {
 		trajectories[0] = left;
 		trajectories[1] = right;
 	}
-	
+
+	/**
+	 * 
+	 * @param trajectories
+	 */
 	public WheelTrajectory(final Trajectory[] trajectories) {
 		this.trajectories = trajectories;
 	}
-	
+
+	/**
+	 * 
+	 * @return left wheel trajectory
+	 */
 	public Trajectory getLeftTrajectory() {
 		return trajectories[0];
 	}
-	
+
+	/**
+	 * 
+	 * @return right wheel trajectory
+	 */
 	public Trajectory getRightTrajectory() {
 		return trajectories[1];
 	}
-	
+
 	public void graphForwardvsHorizontal() {
 		double[] forward = new double[getLeftTrajectory().length()];
 		double[] horizontal = new double[getLeftTrajectory().length()];
@@ -34,7 +55,7 @@ public class WheelTrajectory {
 
 		new Graph("Horizontal", "Forward", horizontal, forward, horizontal2, forward2).run();
 	}
-	
+
 	public void graphVelocities() {
 		double[] time = new double[getLeftTrajectory().length()];
 		double[] velLeft = new double[getLeftTrajectory().length()];
@@ -45,6 +66,6 @@ public class WheelTrajectory {
 			velRight[i] = getRightTrajectory().get(i).getVelocity();
 		}
 
-		new Graph("Velocity", "Time", time, velLeft,time, velRight).run();
+		new Graph("Velocity", "Time", time, velLeft, time, velRight).run();
 	}
 }

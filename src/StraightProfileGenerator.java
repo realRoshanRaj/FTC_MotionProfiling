@@ -6,13 +6,23 @@ public class StraightProfileGenerator {
 	 * @return {@link WheelTrajectory}
 	 */
 	public static Trajectory generateTrajectory(Config config, double distance) {
+		Trajectory trajectory;
 		double time = config.max_velocity / config.max_acceleration;
 		double area = time * config.max_velocity;
-		if (distance <= area) {
-			return generateTriangular(config, distance);
+		if (Math.abs(distance) <= area) {
+			trajectory = generateTriangular(config, Math.abs(distance));
 		} else {
-			return generateTrapezoidal(config, distance);
+			trajectory = generateTrapezoidal(config, Math.abs(distance));
 		}
+		if (distance < 0) {
+			for (int i = 0; i < trajectory.length(); i++) {
+				trajectory.segments[i].position *= -1;
+				trajectory.segments[i].velocity *= -1;
+				trajectory.segments[i].acceleration *= -1;
+			}
+		}
+
+		return trajectory;
 	}
 
 	/**
@@ -24,10 +34,11 @@ public class StraightProfileGenerator {
 		double time = config.max_velocity / config.max_acceleration;
 		double area = time * config.max_velocity;
 		Trajectory cent, left, right;
-		if (distance <= area) {
-			cent = generateTriangular(config, distance);
+
+		if (Math.abs(distance) <= area) {
+			cent = generateTriangular(config, Math.abs(distance));
 		} else {
-			cent = generateTrapezoidal(config, distance);
+			cent = generateTrapezoidal(config, Math.abs(distance));
 		}
 
 		left = cent.copy();
@@ -36,6 +47,14 @@ public class StraightProfileGenerator {
 		for (int i = 0; i < cent.length(); i++) {
 			left.segments[i].horizontal -= (wheelbase_width / 2);
 			right.segments[i].horizontal += (wheelbase_width / 2);
+			if (distance < 0) {
+				left.segments[i].position *= -1;
+				left.segments[i].velocity *= -1;
+				left.segments[i].acceleration *= -1;
+				right.segments[i].position *= -1;
+				right.segments[i].velocity *= -1;
+				right.segments[i].acceleration *= -1;
+			}
 		}
 
 		return new WheelTrajectory(left, right);

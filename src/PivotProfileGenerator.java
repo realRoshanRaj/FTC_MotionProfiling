@@ -1,3 +1,4 @@
+
 public class PivotProfileGenerator {
 	
 	/**
@@ -18,6 +19,7 @@ public class PivotProfileGenerator {
 				double heading = -left.get(i).getPosition() / r;
 				left.segments[i].velocity *= -1;
 				left.segments[i].acceleration *= -1;
+				left.segments[i].position *= -1;
 				left.segments[i].heading = Math.toDegrees(heading);
 				right.segments[i].heading = Math.toDegrees(heading);
 				left.segments[i].horizontal = -r * Math.cos(heading);
@@ -33,6 +35,7 @@ public class PivotProfileGenerator {
 				double heading = left.get(i).getPosition() / r;
 				right.segments[i].velocity *= -1;
 				right.segments[i].acceleration *= -1;
+				right.segments[i].position *= -1;
 				left.segments[i].heading = Math.toDegrees(heading);
 				right.segments[i].heading = Math.toDegrees(heading);
 				left.segments[i].horizontal = -r * Math.cos(heading);

@@ -1,17 +1,17 @@
 
 public class Segment {
-	double dt, forward, horizontal, position, velocity, acceleration, heading;
+	double time, forward, horizontal, position, velocity, acceleration, heading;
 
 	/**
-	 * @param dt
+	 * @param time
 	 * @param x
 	 * @param y
 	 * @param position
 	 * @param velocity
 	 * @param acceleration
 	 */
-	public Segment(double dt, double x, double y, double position, double velocity, double acceleration) {
-		this.dt = dt;
+	public Segment(double time, double x, double y, double position, double velocity, double acceleration) {
+		this.time = time;
 		this.position = position;
 		this.velocity = velocity;
 		this.acceleration = acceleration;
@@ -32,44 +32,44 @@ public class Segment {
 		velocity = to_copy.velocity;
 		acceleration = to_copy.acceleration;
 		heading = to_copy.heading;
-		dt = to_copy.dt;
+		time = to_copy.time;
 		forward = to_copy.forward;
 		horizontal = to_copy.horizontal;
 	}
 
 	/**
-	 * @return position
+	 * @return position of segment
 	 */
 	public double getPosition() {
 		return position;
 	}
 
 	/**
-	 * @return velocity
+	 * @return velocity of segment
 	 */
 	public double getVelocity() {
 		return velocity;
 	}
 
 	/**
-	 * @return acceleration
+	 * @return acceleration of segment
 	 */
 	public double getAcceleration() {
 		return acceleration;
 	}
 
 	/**
-	 * @return heading
+	 * @return heading of segment
 	 */
 	public double getHeading() {
 		return heading;
 	}
 
 	/**
-	 * @return time to cycle
+	 * @return time of segment
 	 */
 	public double getTime() {
-		return dt;
+		return time;
 	}
 
 	/**
