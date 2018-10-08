@@ -1,3 +1,4 @@
+package motionProfileGenerator.ftc.tools;
 
 /**
  * Stores two trajectories for left and right side of the drivetrain

@@ -1,3 +1,4 @@
+package motionProfileGenerator.ftc.tools;
 
 public class Segment {
 	double time, forward, horizontal, position, velocity, acceleration, heading;
